@@ -20,7 +20,7 @@ The project is divided into a few packages and layers:
 
 As the project develops, we will be using different profiles for test, development and production. The profiles will allow us to map our beans to different profiles. 
 For the testing profile, we'll be using the H2 database, which is a in-memory database for testing and we can access the data though the browser.
-For the dev profile, we'll be using a mysql workbench to test all data to be created/inserted and retrieved.
+For the dev profile, we'll be using a mysql on myphpAdmin to test all data to be created/inserted and retrieved.
 For the production, we'll use webservices and requests. A test has already been made on Heroku and it was deployed. It has been deleted at this point for corrections (05/02/2022) and another deployment will be made as soon as possible.
   
   Within the config layer, we'll configure the security. What can be accessed or not on the page by the browser etc.
