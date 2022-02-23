@@ -7,11 +7,12 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.UUID;
 
 public class StaffDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    private UUID id;
 
     @NotEmpty(message ="Mandatory to fill in")
     @Length(min=5, max=20, message ="Size should be between 5 and 20")
@@ -34,11 +35,11 @@ public class StaffDTO implements Serializable {
     public StaffDTO() {
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class StaffService {
@@ -23,7 +24,7 @@ public class StaffService {
     @Autowired
     private StaffRepository repo;
 
-    public Staff find(Integer id){
+    public Staff find(UUID id){
         Optional<Staff> staff = repo.findById(id);
 
         return staff.orElseThrow(() -> new ObjectNotFoundException(("Staff not found! Id: " + id)));
@@ -46,7 +47,7 @@ public class StaffService {
         return repo.save(staff);
     }
 
-    public void delete(Integer id){
+    public void delete(UUID id){
         find(id);
         try {
             repo.deleteById(id);

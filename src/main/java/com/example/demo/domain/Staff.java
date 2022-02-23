@@ -3,12 +3,12 @@ package com.example.demo.domain;
 
 import com.example.demo.domain.enums.Positions;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.type.UUIDCharType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 
 @Entity
@@ -16,8 +16,10 @@ public class Staff implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(generator = "uuid4")
+//    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
+//    @Column(name = "id", columnDefinition = "VARCHAR(255)")
+    private UUID id;
 
 
 
@@ -28,7 +30,7 @@ public class Staff implements Serializable {
     private String name;
     private Integer position;
 
-    public Staff(Integer id, String username, String password, String name, Positions position) {
+    public Staff(UUID id, String username, String password, String name, Positions position) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -40,11 +42,11 @@ public class Staff implements Serializable {
     }
 
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

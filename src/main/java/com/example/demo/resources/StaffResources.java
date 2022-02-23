@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "staff")
@@ -24,7 +25,7 @@ public class StaffResources {
     private StaffService service;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Staff> find(@PathVariable Integer id){
+    public ResponseEntity<Staff> find(@PathVariable UUID id){
         Staff staff = service.find(id);
         return ResponseEntity.ok().body(staff);
     }
@@ -49,7 +50,7 @@ public class StaffResources {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@Valid @RequestBody StaffDTO staffDTO, @PathVariable Integer id){
+    public ResponseEntity<Void> update(@Valid @RequestBody StaffDTO staffDTO, @PathVariable UUID id){
 
         Staff staff = service.fromDto(staffDTO);
         staff.setId(id);
@@ -60,7 +61,7 @@ public class StaffResources {
     }
 
     @RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-    public ResponseEntity<Staff> delete(@PathVariable Integer id){
+    public ResponseEntity<Staff> delete(@PathVariable UUID id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
