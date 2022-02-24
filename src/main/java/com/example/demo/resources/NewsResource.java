@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "news")
@@ -21,7 +22,7 @@ public class NewsResource {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<News> find(@PathVariable Integer id){
+    public ResponseEntity<News> find(@PathVariable UUID id){
         News news = service.find(id);
         return ResponseEntity.ok().body(news);
     }
@@ -43,7 +44,7 @@ public class NewsResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Void> update(@RequestBody News news, @PathVariable Integer id){
+    public ResponseEntity<Void> update(@RequestBody News news, @PathVariable UUID id){
 
         news.setId(id);
         news = service.update(news);
@@ -53,7 +54,7 @@ public class NewsResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<News> delete(@PathVariable Integer id) {
+    public ResponseEntity<News> delete(@PathVariable UUID id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

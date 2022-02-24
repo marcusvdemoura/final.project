@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class NewsService {
@@ -16,7 +17,7 @@ public class NewsService {
     @Autowired
     private NewsRepository repo;
 
-    public News find(Integer id){
+    public News find(UUID id){
         Optional<News> newsOptional = repo.findById(id);
         return newsOptional.orElseThrow(() -> new ObjectNotFoundException(("News not found! Id: " + id)));
     }
@@ -36,7 +37,7 @@ public class NewsService {
         return repo.save(news);
     }
 
-    public void delete(Integer id){
+    public void delete(UUID id){
         find(id);
         repo.deleteById(id);
     }

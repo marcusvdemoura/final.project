@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/beds/**",
             "/news/**",
             "/properties/**",
-            "/rooms/**"
+            "/rooms/**",
+            "/staff/**",
 
     };
 
@@ -36,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/beds/**",
             "/news/**",
             "/properties/**",
-            "/rooms/**"
+            "/rooms/**",
+            "/staff/**"
     };
 
 

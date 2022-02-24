@@ -5,31 +5,32 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 public class News implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(generator = "uuid4")
+    private UUID id;
 
     private String imageURL;
     private String message;
 
     public News(){}
 
-    public News(Integer id, String imageURL, String message) {
+    public News(UUID id, String imageURL, String message) {
         this.id = id;
         this.imageURL = imageURL;
         this.message = message;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

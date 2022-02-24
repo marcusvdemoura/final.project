@@ -1,15 +1,13 @@
 package com.example.demo.services;
 
 
+import com.example.demo.domain.News;
 import com.example.demo.domain.Property;
 import com.example.demo.domain.RoomType;
 import com.example.demo.domain.Staff;
 
 import com.example.demo.domain.enums.Positions;
-import com.example.demo.repositories.BedRepository;
-import com.example.demo.repositories.PropertyRepository;
-import com.example.demo.repositories.RoomTypeRepository;
-import com.example.demo.repositories.StaffRepository;
+import com.example.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,6 +32,9 @@ public class DBService {
 
     @Autowired
     private BedRepository bedRepository;
+
+    @Autowired
+    private NewsRepository newsRepository;
 
     public DBService() {
     }
@@ -62,6 +63,10 @@ public class DBService {
         roomTypeRepository.saveAll(Arrays.asList(sixteenBedChapel, eightBedMixed));
         bedRepository.saveAll(sixteenBedChapel.getBedsList());
         bedRepository.saveAll(eightBedMixed.getBedsList());
+        String imageMessage = "This is a test image";
+        String imageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fgalway&psig=AOvVaw1Y4TJPKf76_47nl1iiYfjV&ust=1645801669435000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiD15DPmPYCFQAAAAAdAAAAABAD";
+        News news1 = new News(null, imageUrl, imageMessage);
+        newsRepository.save(news1);
 
     }
 
