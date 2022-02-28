@@ -4,7 +4,6 @@ package com.example.demo.domain.domaindto;
 import com.example.demo.domain.Staff;
 import com.example.demo.domain.enums.Positions;
 import org.hibernate.validator.constraints.Length;
-
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.UUID;

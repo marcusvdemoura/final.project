@@ -1,16 +1,13 @@
 package com.example.demo.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.UUID;
 
+@Entity
 public class Guest implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -19,29 +16,26 @@ public class Guest implements Serializable {
 //    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
 //    @Column(name = "id", columnDefinition = "VARCHAR(255)")
     private UUID id;
-
- // @JsonIgnore
     private String name;
     private String email;
     private String password;
     private int guestStatus;
     //private Reservation reservation;
 
-
    @OneToOne
-    private Beds bed; //could it be an array
+    private Beds beds;
 
     public Guest() {
 
     }
 
-    public Guest(UUID id, String name, String email, String password, int guestStatus, Beds bed) {
+    public Guest(UUID id, String name, String email, String password, int guestStatus, Beds beds) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.guestStatus = guestStatus;
-        this.bed = bed;
+        this.beds = beds;
     }
 
     public UUID getId() {
@@ -81,10 +75,10 @@ public class Guest implements Serializable {
     }
 
     public Beds getBed() {
-        return bed;
+        return beds;
     }
 
-    public void setBed(Beds bed) {
-        this.bed = bed;
+    public void setBed(Beds beds) {
+        this.beds = beds;
     }
 }

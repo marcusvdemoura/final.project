@@ -18,7 +18,7 @@ public class Beds implements Serializable {
     private boolean isClean;
     private boolean isRefresh;
     @OneToOne
-    @JsonIgnoreProperties("bed")
+    @JsonIgnoreProperties("beds")
     private Guest guest;
 
 

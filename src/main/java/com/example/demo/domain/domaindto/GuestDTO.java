@@ -1,4 +1,74 @@
 package com.example.demo.domain.domaindto;
 
+
+import com.example.demo.domain.Guest;
+import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.NotEmpty;
+import java.util.UUID;
+
 public class GuestDTO {
+    private static final long serialVersionUID = 1L;
+
+    private UUID id;
+
+    @NotEmpty(message ="Mandatory to fill in")
+    private String name;
+    @NotEmpty(message ="Mandatory to fill in")
+    private String email;
+
+    @NotEmpty(message ="Mandatory to fill in")
+    @Length(min=5, max=20, message ="Size should be between 5 and 20")
+    private String password;
+    private int guestStatus;
+
+    //will we need beds and reservation in the dto ??
+    //need to verify and test
+
+    public GuestDTO(Guest g) {
+        id = g.getId();
+        name = g.getName();
+        email = g.getEmail();
+        password = g.getPassword();
+        guestStatus = g.getGuestStatus();
+    }
+
+    public GuestDTO() {
+
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getGuestStatus() {
+        return guestStatus;
+    }
+
+    public void setGuestStatus(int guestStatus) {
+        this.guestStatus = guestStatus;
+    }
 }
