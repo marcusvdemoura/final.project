@@ -13,6 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DBService {
@@ -40,14 +43,28 @@ public class DBService {
     }
 
     public void instantiateTestDatabase() {
-        Staff firstStaff = new Staff(null, "marcus@moura", pe.encode("12345"),
-                "Marcus Moura", Positions.RECEPTIONIST);
-        Staff secondStaff = new Staff(null, "carol@propato", pe.encode("12345"),
-                "Carol Propato", Positions.MANAGER);
-        Staff thirdStaff = new Staff(null, "maya@santos", pe.encode("12345"),
-                "Maya Santos", Positions.MANAGER);
 
-        staffRepository.saveAll(Arrays.asList(firstStaff, secondStaff, thirdStaff));
+        List<Staff> listStaff = Stream.of(
+                new Staff(null, "marcus@moura", pe.encode("12345"),
+               "Marcus Moura", Positions.RECEPTIONIST),
+                        new Staff(null, "carol@propato", pe.encode("12345"),
+               "Carol Propato", Positions.MANAGER),
+                new Staff(null, "maya@santos", pe.encode("12345"),
+                "Maya Santos", Positions.MANAGER)
+        ).collect(Collectors.toList());
+
+        // THESE ARE THE OBJECTS CREATED BEFORE BUT WITHOUT THE PASSWORD ENCODING TO MAKE IT EASIER FOR TESTING
+
+//        List<Staff> listStaff = Stream.of(
+//                new Staff(null, "marcus@moura", "12345",
+//                        "Marcus Moura", Positions.RECEPTIONIST),
+//                new Staff(null, "carol@propato", "12345",
+//                        "Carol Propato", Positions.MANAGER),
+//                new Staff(null, "maya@santos", "12345",
+//                        "Maya Santos", Positions.MANAGER)
+//        ).collect(Collectors.toList());
+
+        staffRepository.saveAll(listStaff);
 
         // ============================
 
