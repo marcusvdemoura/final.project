@@ -1,10 +1,7 @@
 package com.example.demo.services;
 
 
-import com.example.demo.domain.News;
-import com.example.demo.domain.Property;
-import com.example.demo.domain.RoomType;
-import com.example.demo.domain.Staff;
+import com.example.demo.domain.*;
 
 import com.example.demo.domain.enums.Positions;
 import com.example.demo.repositories.*;
@@ -13,6 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class DBService {
@@ -35,6 +35,9 @@ public class DBService {
 
     @Autowired
     private NewsRepository newsRepository;
+
+    @Autowired
+    private GuestRepository guestRepository;
 
     public DBService() {
     }
@@ -67,6 +70,22 @@ public class DBService {
         String imageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fgalway&psig=AOvVaw1Y4TJPKf76_47nl1iiYfjV&ust=1645801669435000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiD15DPmPYCFQAAAAAdAAAAABAD";
         News news1 = new News(null, imageUrl, imageMessage);
         newsRepository.save(news1);
+
+
+        List<Guest> guestList = Stream.of(
+                new Guest(
+                        null, "Jose", "jose@gmail.com", pe.encode("1234"), 1, sixteenBedChapel),
+                new Guest(
+                        null, "Marcus", "marcus@moura.com", pe.encode("1234"), 1, sixteenBedChapel)
+                ).collect(Collectors.toList());
+
+
+        guestRepository.saveAll(guestList);
+        roomTypeRepository.saveAll(Arrays.asList(sixteenBedChapel, eightBedMixed));
+
+
+        // update beds with the new data -> which guest is in there.
+        // update roomtype bedlist with the guest in each bed
 
     }
 

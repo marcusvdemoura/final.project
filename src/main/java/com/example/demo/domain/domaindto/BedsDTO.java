@@ -33,6 +33,7 @@ public class BedsDTO implements Serializable {
         this.number = beds.getNumber();
         this.isClean = beds.isClean();
         this.isRefresh = beds.isRefresh();
+        this.roomNumber = beds.getRoomNumber();
 
     }
 

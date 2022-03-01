@@ -24,12 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private Environment env;
 
     private static final String[] PUBLIC_MATCHERS = {
-            "/h2-console/**",
-            "/beds/**",
-            "/news/**",
-            "/properties/**",
-            "/rooms/**",
-            "/staff/**",
+//            "/h2-console/**",
+//            "/beds/**",
+//            "/news/**",
+//            "/properties/**",
+//            "/rooms/**",
+//            "/staff/**",
+            "/**"
+
 
     };
 
@@ -38,7 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/news/**",
             "/properties/**",
             "/rooms/**",
-            "/staff/**"
+            "/staff/**",
+
     };
 
 

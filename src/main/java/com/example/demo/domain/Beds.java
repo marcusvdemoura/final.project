@@ -15,21 +15,25 @@ public class Beds implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer number;
+    private String roomNumber;
     private boolean isClean;
     private boolean isRefresh;
+
     @OneToOne
     @JsonIgnoreProperties("beds")
     private Guest guest;
 
 
 
-    public Beds(Integer id, Integer number, boolean isClean, boolean isRefresh) {
+    public Beds(Integer id, Integer number, String roomNumber, boolean isClean, boolean isRefresh) {
         this.id = id;
         this.number = number;
+        this.roomNumber = roomNumber;
         this.isClean = isClean;
         this.isRefresh = isRefresh;
         if(this.isRefresh == true)
             this.isClean = false;
+
 
     }
 
@@ -52,6 +56,14 @@ public class Beds implements Serializable {
         this.number = number;
     }
 
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     public boolean isClean() {
         return isClean;
     }
@@ -68,4 +80,11 @@ public class Beds implements Serializable {
         isRefresh = refresh;
     }
 
+    public void setGuest(Guest guest){
+        this.guest=guest;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
 }

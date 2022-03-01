@@ -30,6 +30,9 @@ public class RoomType implements Serializable {
     @JoinColumn(name = "room")
     private List<Beds> bedsList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "roomType")
+    private List<Guest> guestList = new ArrayList<>();
+
 
 
     public RoomType() {
@@ -102,9 +105,13 @@ public class RoomType implements Serializable {
     public void createBeds(){
 
         for(int i = 1; i<=getNumberBeds(); i++){
-            getBedsList().add(new Beds(null, i, true, false));
+            getBedsList().add(new Beds(null, i, getRoomNumber(), true, false));
         }
 
 
+    }
+
+    public List<Guest> getGuestList() {
+        return guestList;
     }
 }

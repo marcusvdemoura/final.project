@@ -1,9 +1,9 @@
 package com.example.demo.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import com.example.demo.domain.enums.GuestStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -22,24 +22,48 @@ public class Guest implements Serializable {
     private int guestStatus;
     //private Reservation reservation;
 
+    //guestService conferir
+    //guestDTO conferir
+    //criar guest Resources
+    //Testar guest entity
+
+    @ManyToOne
+    @JoinColumn (name = "room_id")
+    @JsonIgnoreProperties({"bedsList", "guestList"})
+    private RoomType roomType;
+
    @OneToOne
-    private Beds beds;
+   private Beds beds;
 
     public Guest() {
 
     }
 
-    public Guest(UUID id, String name, String email, String password, int guestStatus, Beds beds) {
+    public Guest(UUID id, String name, String email, String password, int guestStatus, RoomType roomType) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.guestStatus = guestStatus;
-        this.beds = beds;
+        this.roomType = roomType;
+        roomType.getGuestList().add(this);
+
+        for(Beds b: this.roomType.getBedsList()){
+            if (b.getGuest()==null){
+                b.setGuest(this);
+                this.beds = b;
+                break;
+            }
+        }
     }
 
     public UUID getId() {
         return id;
+    }
+
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -66,12 +90,20 @@ public class Guest implements Serializable {
         this.password = password;
     }
 
-    public int getGuestStatus() {
-        return guestStatus;
+    public GuestStatus getGuestStatus() {
+        return GuestStatus.toEnum(this.guestStatus);
     }
 
-    public void setGuestStatus(int guestStatus) {
-        this.guestStatus = guestStatus;
+    public void setGuestStatus(GuestStatus guestStatus) {
+        this.guestStatus = guestStatus.getCode();
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
     }
 
     public Beds getBed() {
