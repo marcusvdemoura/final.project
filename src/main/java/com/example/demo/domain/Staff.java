@@ -21,8 +21,6 @@ public class Staff implements Serializable {
 //    @Column(name = "id", columnDefinition = "VARCHAR(255)")
     private UUID id;
 
-
-
     private String username;
 
     @JsonIgnore
@@ -82,6 +80,14 @@ public class Staff implements Serializable {
         this.password = password;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", position=" + position +
+                '}';
+    }
 }

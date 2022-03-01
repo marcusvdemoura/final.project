@@ -30,6 +30,7 @@ public class StaffService {
         return staff.orElseThrow(() -> new ObjectNotFoundException(("Staff not found! Id: " + id)));
     }
 
+
     public List<Staff> findAll(){
 
         return repo.findAll();
@@ -38,7 +39,6 @@ public class StaffService {
 
 
     public Staff insert(Staff staff){
-
         return repo.save(staff);
     }
 
@@ -59,8 +59,7 @@ public class StaffService {
     public Staff fromDto(StaffDTO staffDTO){
 
         return new ModelMapper().map(staffDTO, Staff.class);
-//        return new Staff(staffDTO.getId(), staffDTO.getUsername(),pe.encode(staffDTO.getPassword()),
-//                staffDTO.getName(), staffDTO.getPosition());
+
     }
 
 
