@@ -13,19 +13,12 @@ public class Guest implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid4")
-//    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
-//    @Column(name = "id", columnDefinition = "VARCHAR(255)")
     private UUID id;
     private String name;
     private String email;
     private String password;
     private int guestStatus;
-    //private Reservation reservation;
-
-    //guestService conferir
-    //guestDTO conferir
-    //criar guest Resources
-    //Testar guest entity
+    private Reservation reservation;
 
     @ManyToOne
     @JoinColumn (name = "room_id")
@@ -39,12 +32,13 @@ public class Guest implements Serializable {
 
     }
 
-    public Guest(UUID id, String name, String email, String password, int guestStatus, RoomType roomType) {
+    public Guest(UUID id, String name, String email, String password, int guestStatus, RoomType roomType, Reservation reservation) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.guestStatus = guestStatus;
+        this.reservation = reservation;
         this.roomType = roomType;
         roomType.getGuestList().add(this);
 
@@ -112,5 +106,13 @@ public class Guest implements Serializable {
 
     public void setBed(Beds beds) {
         this.beds = beds;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }

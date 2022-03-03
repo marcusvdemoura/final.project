@@ -1,6 +1,6 @@
 package com.example.demo.domain.enums;
 
-public enum GuestStatus {
+public enum ReservationStatus {
 
     CONFIRMED(1,"Confirmed"),
     INHOUSE(2, "In-house"),
@@ -11,7 +11,7 @@ public enum GuestStatus {
     Integer code;
     String desc;
 
-    GuestStatus(Integer code, String desc) {
+    ReservationStatus(Integer code, String desc) {
         this.code = code;
         this.desc = desc;
     }
@@ -24,17 +24,17 @@ public enum GuestStatus {
         return desc;
     }
 
-    public static GuestStatus toEnum(Integer code){
+    public static ReservationStatus toEnum(Integer code){
         if (code == null){
             return null;
         }
 
-        for (GuestStatus x : GuestStatus.values()){
+        for (ReservationStatus x : ReservationStatus.values()){
             if(code.equals(x.getCode())){
                 return x;
             }
         }
 
-        throw new IllegalArgumentException("Wrong Guest status input. Code: " + code);
+        throw new IllegalArgumentException("Wrong reservation status input. Code: " + code);
     }
 }

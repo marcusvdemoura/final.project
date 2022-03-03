@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,6 +40,9 @@ public class DBService {
 
     @Autowired
     private GuestRepository guestRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
 
     public DBService() {
     }
@@ -76,13 +81,18 @@ public class DBService {
         String imageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fgalway&psig=AOvVaw1Y4TJPKf76_47nl1iiYfjV&ust=1645801669435000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJiD15DPmPYCFQAAAAAdAAAAABAD";
         News news1 = new News(null, imageUrl, imageMessage);
 
+        //reservation instance
+        LocalDateTime checkIn = LocalDateTime.now();
+        LocalDateTime checkOut = LocalDateTime.of(2022, 04, 01, 14, 30);
+        Reservation reservation = new Reservation(null, "test", 1, 5, 1, gardinerHouse, null, null ,checkIn, checkOut);
+
 
 
         List<Guest> guestList = Stream.of(
                 new Guest(
-                        null, "Jose", "jose@gmail.com", pe.encode("1234"), 1, sixteenBedChapel),
+                        null, "Jose", "jose@gmail.com", pe.encode("1234"), 1, sixteenBedChapel, reservation),
                 new Guest(
-                        null, "Marcus", "marcus@moura.com", pe.encode("1234"), 1, sixteenBedChapel)
+                        null, "Marcus", "marcus@moura.com", pe.encode("1234"), 1, sixteenBedChapel, reservation)
                 ).collect(Collectors.toList());
 
 

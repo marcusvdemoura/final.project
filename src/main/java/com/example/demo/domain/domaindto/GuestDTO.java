@@ -3,6 +3,7 @@ package com.example.demo.domain.domaindto;
 
 import com.example.demo.domain.Beds;
 import com.example.demo.domain.Guest;
+import com.example.demo.domain.Reservation;
 import com.example.demo.domain.RoomType;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
@@ -27,9 +28,8 @@ public class GuestDTO {
 
     private RoomType roomType;
     private Beds beds;
+    private Reservation reservation;
 
-
-   // private Reservation reservation;
 
 //will we need beds and reservation in the dto ??
     //need to verify and test
@@ -42,6 +42,7 @@ public class GuestDTO {
         guestStatus = g.getGuestStatus().getCode();
         roomType = g.getRoomType();
         beds = g.getBed();
+        reservation = g.getReservation();
 
     }
 
@@ -91,5 +92,21 @@ public class GuestDTO {
 
     public void setBeds(Beds beds) {
         this.beds = beds;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
 }
