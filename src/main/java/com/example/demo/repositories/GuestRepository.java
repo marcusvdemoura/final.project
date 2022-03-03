@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface GuestRepository extends JpaRepository<Guest, UUID>{
+    Guest findByEmail(String email);
 }

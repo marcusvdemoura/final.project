@@ -36,6 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtFilter jwtFilter;
 
 
+        private static final String[] PUBLIC_MATCHERS = {
+
+                "/authenticate-staff",
+                "/authenticate-guest",
+
+    };
+
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -58,12 +66,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/authenticate")
+                .antMatchers(PUBLIC_MATCHERS)
                 .permitAll()
                 .anyRequest()
                 .authenticated().and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
     }
 
 

@@ -29,15 +29,36 @@ public class WelcomeController {
         return "Welcome to my app";
     }
 
-    @PostMapping("/authenticate")
-    public ResponseEntity<HashMap<String, String>> generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+    @PostMapping("/authenticate-staff")
+    public ResponseEntity<HashMap<String, String>> generateTokenStaff(@RequestBody AuthRequest authRequest) throws Exception {
+
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(),
                             authRequest.getPassword())
             );
         } catch (Exception e){
-            throw new Exception("invalid username//passowrd");
+            throw new Exception("invalid username//passoword");
+        }
+
+        HashMap<String, String> result = new HashMap<>();
+        result.put("Token", jwtUtil.generateToken(authRequest.getUsername()));
+
+        return ResponseEntity.ok().body(result);
+
+
+    }
+
+    @PostMapping("/authenticate-guest")
+    public ResponseEntity<HashMap<String, String>> generateTokenGuest(@RequestBody AuthRequest authRequest) throws Exception {
+
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getUsername(),
+                            authRequest.getPassword())
+            );
+        } catch (Exception e){
+            throw new Exception("invalid username//passoword");
         }
 
         HashMap<String, String> result = new HashMap<>();
