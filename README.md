@@ -65,6 +65,10 @@ The entity resource is responsible for the mapping of the requests. It will cont
 
 
 
+UPDATE 22/03/2022
+
+We've recently managed to get working with spring-data-rest-core and spring-boot-starter-data-rest dependencies. These dependencies managed to reduce the amount of code written and make the project more readable. Also, with new @tags we were able to implement pagination.
+
 
 
 
@@ -77,3 +81,9 @@ Bibliography
 https://medium.com/the-resonant-web/spring-boot-2-0-project-structure-and-best-practices-part-2-7137bdcba7d3  Accessed: 22-02-2022 at 15:30
 https://www.baeldung.com/spring-profiles Accessed at: 22-02-2022 at 16:00
 https://www.geeksforgeeks.org/spring-service-annotation-with-example/ Accessed at: 22-02-2022 at 15:20
+https://www.youtube.com/watch?v=b7GPq6xUjfE&t=285s Accessed at: 02-03-2022 at 14:00
+https://www.youtube.com/watch?v=rBNOc4ymd1E Accessed at: 02-03-2022 at 14:45
+https://www.youtube.com/watch?v=ytHBE179sZs&t=589s Accessed at: 02-03-2022 at 17:00
+https://www.youtube.com/watch?v=sm-IJSneE-M&t=1760s Accessed at: 03-03-2022 at 18:00
+https://www.youtube.com/watch?v=rBNOc4ymd1E Accessed at: 12-03-2022 at 09:50
+https://www.youtube.com/watch?v=f5bdUjEIbrg&t=651s Accessed at: 13-03-2022 at 10:32
