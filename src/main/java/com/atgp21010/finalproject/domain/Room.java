@@ -23,6 +23,7 @@ public class Room implements Serializable {
     private String roomNumber;
     private String floor;
     private Integer numberBeds;
+    private String rfidTag;
 
     public Room() {
 
