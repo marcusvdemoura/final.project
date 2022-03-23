@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel = "news", path = "news")
-public interface NewsRepository extends JpaRepository<News, UUID> {
+public interface NewsRepository extends JpaRepository<News, Integer> {
 
     List<News> findByMessage(@Param("message") String message);
 }

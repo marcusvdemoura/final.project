@@ -20,8 +20,8 @@ public class CustomGuestDetailsService implements UserDetailsService {
     private GuestRepository guestRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Guest guest = guestRepository.findByUsername(username);
-        return new User(guest.getUsername(), guest.getPassword(), new ArrayList<>());
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Guest guest = guestRepository.findByEmail(email);
+        return new User(guest.getEmail(), guest.getPassword(), new ArrayList<>());
     }
 }

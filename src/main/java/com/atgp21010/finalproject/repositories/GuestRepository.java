@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 @RepositoryRestResource(path = "guest", collectionResourceRel = "guest")
-public interface GuestRepository extends JpaRepository<Guest, UUID> {
+public interface GuestRepository extends JpaRepository<Guest, Integer> {
 
     List<Guest> findByName(@Param("name") String name);
 
-    Guest findByUsername(String username);
+    Guest findByEmail(String email);
 }

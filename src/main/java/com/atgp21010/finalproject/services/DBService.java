@@ -80,15 +80,17 @@ public class DBService {
         Guest firstGuest = new Guest();
         Guest secondGuest = new Guest();
 
-        firstGuest.setName("Marcus");
-        firstGuest.setUsername("marcus@moura.com");
+        firstGuest.setName("Emma Watson");
+        firstGuest.setEmail("emma@watson.com");
         firstGuest.setPassword(pe.encode("123456"));
         firstGuest.getReservationList().add(firstReservation);
+        firstGuest.setBed();
 
-        secondGuest.setName("Janis Celm");
-        secondGuest.setUsername("janis@celmars.com");
+        secondGuest.setName("Tom Felton");
+        secondGuest.setEmail("tom@felton.com");
         secondGuest.setPassword(pe.encode("123456"));
         secondGuest.getReservationList().add(firstReservation);
+        secondGuest.setBed();
 
 
 
@@ -100,6 +102,11 @@ public class DBService {
         reservationRepository.save(firstReservation);
         guestRepository.saveAll(Arrays.asList(firstGuest, secondGuest));
 
+
+        System.out.println("PRINTING THE GUESTSSSSSSSSS");
+
+        System.out.println(firstGuest.toString());
+        System.out.println(firstGuest.toString());
 
 
 

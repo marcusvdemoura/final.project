@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel = "reservation", path = "reservation")
-public interface ReservationRepository extends JpaRepository<Reservation, UUID> {
+public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
 
     List<Reservation> findByOriginalBookingNumber(@Param("originalBookingNumber") String originalBookingNumber);
 }

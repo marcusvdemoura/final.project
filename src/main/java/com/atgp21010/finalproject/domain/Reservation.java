@@ -9,9 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Getter
@@ -21,8 +19,8 @@ public class Reservation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "uuid4")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name="ota_id")
@@ -41,6 +39,7 @@ public class Reservation implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "room_id")
     )
     private List<Room> roomList = new ArrayList<>();
+
 
     @ManyToMany(mappedBy = "reservationList")
     private List<Guest> guestList = new ArrayList<>();

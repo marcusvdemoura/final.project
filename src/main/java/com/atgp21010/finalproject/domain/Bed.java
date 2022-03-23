@@ -24,5 +24,8 @@ public class Bed implements Serializable {
 
     private Boolean isVacant;
 
+    @OneToOne(mappedBy = "bed")
+    private Guest guest;
+
 
 }
