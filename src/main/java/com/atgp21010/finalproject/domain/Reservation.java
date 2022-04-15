@@ -23,22 +23,17 @@ public class Reservation implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="ota_id")
+    @JoinColumn(name = "ota_id")
     private OTA ota;
     private String originalBookingNumber;
-    private Integer numberOfGuests;
     private Integer reservationStatus;
-
+    private Integer numberOfGuests;
     @ManyToOne
     @JoinColumn(name = "property_id")
     private Property property;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            joinColumns = @JoinColumn(name = "reservation_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id")
-    )
-    private List<Room> roomList = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Room room;
 
 
     @ManyToMany(mappedBy = "reservationList")

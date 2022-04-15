@@ -1,12 +1,14 @@
 package com.atgp21010.finalproject.domain;
 
 import com.atgp21010.finalproject.domain.enums.ReservationStatus;
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,10 +24,17 @@ public class Guest implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(unique = true)
+    @NotNull
     private String email;
+    @NotNull
     private String name;
     private String password;
-    private String data = this.toString();
+
+//    create a logic to get the next reservation. We'll have to swap the elements in the reservation list bellow, so the res with the next check-in date is in index 0
+//    private String nextReservation;
+
+
 
     @ManyToMany
     @JoinTable(
@@ -35,40 +44,40 @@ public class Guest implements Serializable {
     )
     private List<Reservation> reservationList = new ArrayList<>();
 
+
+
     @OneToOne
     @JoinColumn(name = "bed_id")
     private Bed bed;
 
-    public void setBed() {
-        this.bed = defineBed();
-    }
 
-    public Bed getBed() {
-        defineBed();
-        return bed;
-    }
 
-    private Bed defineBed(){
-        Reservation res = getReservationList().get(0);
-        List<Room> rooms = res.getRoomList();
-        Bed bed = new Bed();
-        for (Room r : rooms){
-            boolean param = false;
-            for (Bed b : r.getBeds()){
-                if (b.getIsVacant()){
-                    b.setIsVacant(false);
-                    bed = b;
-                    param = true;
-                    break;
-                }
-            }
-            if(param){
-                break;
-            }
-        }
-        return bed;
+//    public void setBed() {
+//        this.bed = defineBed();
+//    }
+//
+//    public Bed getBed() {
+//        defineBed();
+//        return bed;
+//    }
 
-    }
+//    private Bed defineBed() {
+//        Reservation res = getReservationList().get(0);
+//        Room room = res.getRoom();
+//        Bed bed = new Bed();
+//        boolean param = false;
+//        for (Bed b : room.getBeds()) {
+//            if (b.getIsVacant()) {
+//                b.setIsVacant(false);
+//                bed = b;
+//                param = true;
+//                break;
+//            }
+//        }
+//        return bed;
+//
+//
+//    }
 
     @Override
     public String toString() {
@@ -81,4 +90,7 @@ public class Guest implements Serializable {
                 ", bed=" + bed +
                 '}';
     }
+
+
+
 }

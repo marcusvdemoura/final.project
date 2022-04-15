@@ -10,5 +10,5 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "bed", path = "bed")
 public interface BedRepository extends JpaRepository<Bed, Integer> {
 
-    List<Bed> findByIsVacant(@Param("isVacant") Boolean isVacant);
+//    List<Bed> findByRoomNumber(@Param("isVacant") Boolean isVacant);
 }

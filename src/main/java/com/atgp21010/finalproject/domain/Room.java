@@ -37,23 +37,21 @@ public class Room implements Serializable {
     @JoinColumn(name = "bed_id")
     private List<Bed> beds;
 
-    @ManyToMany(mappedBy = "roomList")
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Reservation> reservationList = new ArrayList<>();
 
 
-
-    public void setNumberBeds(Integer numberBeds){
-        this.numberBeds=numberBeds;
+    public void setNumberBeds(Integer numberBeds) {
+        this.numberBeds = numberBeds;
         createBeds();
     }
 
-    public void createBeds(){
+    public void createBeds() {
         List<Bed> beds = new ArrayList<>();
-        for(int i =1; i <= numberBeds; i++){
+        for (int i = 1; i <= numberBeds; i++) {
 
             Bed bed = new Bed();
             bed.setRoomNumber(this.getRoomNumber());
-            bed.setIsVacant(true);
             bed.setNumber(i);
             beds.add(bed);
         }
